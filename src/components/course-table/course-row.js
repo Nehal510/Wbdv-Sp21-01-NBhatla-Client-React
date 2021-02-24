@@ -65,7 +65,7 @@ const CourseRow = (
             </td>
         </tr>)*/
     return(
-        <div className="row" style={{fontSize: "1.7em", borderBottom: "1px solid #cccccc", padding: "5px"}}>
+        <div className="row" style={{fontSize: "1em", borderBottom: "1px solid #cccccc", padding: "5px"}}>
             <div className="col-8 col-md-7 col-lg-6">
                 {
                     editing &&

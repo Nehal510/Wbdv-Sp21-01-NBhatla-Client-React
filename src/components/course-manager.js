@@ -58,7 +58,7 @@ export default class CourseManager
         const newCourse = {
             title: this.state.courseInput,
             owner: "Me",
-            lastModified: (new Date()).toDateString()
+            lastModified: "02/20/2021"
         }
         courseService.createCourse(newCourse)
             .then(actualCourse => {
@@ -79,11 +79,11 @@ export default class CourseManager
                         <div className="col-lg-3 d-none d-lg-block">
                             <h3>Course Manager</h3>
                         </div>
-                        <div className="col-10 col-lg-7">
+                        <div className="col-8 col-lg-7">
                             <input className="form-control" placeholder="New Course Title" value={this.state.courseInput} onChange={this.newCourseInput}/>
                         </div>
                         <div className="col-1">
-                            <Link to="/"><i className="fas fa-home float-right fa-2x" style={{color:"black", marginLeft:"20px"}}></i></Link>
+                            {/*<Link to="/"><i className="fas fa-home float-right fa-2x" style={{color:"black", marginLeft:"20px"}}></i></Link>*/}
                             <i style={{color: "red", backgroundColor: "white"}}
                                        className="float-right fas fa-plus-circle fa-2x" onClick={this.addCourse}></i>
                         </div>
