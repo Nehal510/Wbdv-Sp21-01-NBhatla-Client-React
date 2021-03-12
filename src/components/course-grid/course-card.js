@@ -75,7 +75,7 @@ const CourseCard = (
                     </div>
                     <p className="card-text">Some Description</p>
                     {/*<img src={``}/>*/}
-                    <Link to="/editor" className="btn btn-primary">
+                    <Link to={`/courses/grid/edit/${course._id}`} className="btn btn-primary">
                         {course.title}
                     </Link>
                     <div>

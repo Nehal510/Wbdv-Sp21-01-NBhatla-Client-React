@@ -6,19 +6,19 @@ export default () =>
         <h1>Home</h1>
         <ul>
             <li>
-            <Link to="/courses/table">
+            <Link to="/course/table">
                 Courses Table
             </Link>
             </li>
             <li>
-            <Link to="/courses/grid">
+            <Link to="/course/grid">
                 Courses Grid
             </Link>
             </li>
-            <li>
+            {/*<li>
             <Link to="/editor">
                 Course Editor
             </Link>
-            </li>
+            </li>*/}
         </ul>
     </>

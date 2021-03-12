@@ -36,3 +36,60 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-pills .nav-item.active {
+  color: white;
+  background-color: dodgerblue;
+}
+.list-group-item.active a{
+  color: white;
+  background-color: dodgerblue;
+}
+.list-group-item.active {
+  color: white;
+  background-color: dodgerblue;
+}
+
+.addModule{
+  float: left;
+  position: relative;
+  left: 45%;
+  color:dodgerblue;
+}
+
+/*.nav-pills .nav-link{
+  background-color: #e6e6e6;
+}*/
+
+.addLesson{
+  color:dodgerblue;
+}
+
+.addTopic{
+  color:dodgerblue;
+}
+
+.headings{
+  font-weight: bold;
+  font-size: large;
+}
+
+.reSizePills{
+  width: 15rem;
+}
+
+
+/*.nav-pills .nav-item.active {
+  color: white;
+  background-color: dodgerblue;
+}*/
+
+.nav-pills .nav-item{
+  background-color: #e6e6e6;
+}
+
+.nav-pills .nav-item.active a{
+  color: white;
+}
+
+

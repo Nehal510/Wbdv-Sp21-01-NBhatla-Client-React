@@ -45,7 +45,7 @@ export default class CourseTable extends
                     <div className="col-2 d-none d-md-block">Owned By</div>
                     <div className="col-2 d-none d-lg-block">Last Modified</div>
                     <div className="col-8 col-md-3 col-lg-2">
-                        <Link to="/courses/grid"><i className="fas fa-th float-right" style={{marginLeft: "20px", color:"black"}}></i></Link>
+                        <Link to="/course/grid"><i className="fas fa-th float-right" style={{marginLeft: "20px", color:"black"}}></i></Link>
                         <i className="fas fa-sort-alpha-up-alt float-right" style={{marginLeft: "20px"}}></i>
                         <i className="fas fa-folder float-right" style={{marginLeft: "20px"}}></i>
                     </div>
