@@ -92,4 +92,13 @@
   color: white;
 }
 
+.textColor{
+  color:black;
+}
+
+a:hover{
+  text-decoration: none;
+  color: inherit;
+}
+
 
