@@ -12,14 +12,14 @@ const createWidget = (topicId,widget) =>
        /*.then(widget => setWidgets((widgets) => [...widgets, widget]))*/
 
 const deleteWidget = (id) =>
-    fetch(`${WIDGETS_URL}/api/widgets/${id}`, {
+    fetch(`${WIDGETS_URL}/${id}`, {
         method: "DELETE"
     }).then((response => response.json())) /*=> {
         setWidgets((widgets) => widgets.filter(w => w.id !== id))
     })*/
 
 const updateWidget = (id, widget) =>
-    fetch(`${WIDGETS_URL}/api/widgets/${id}`, {
+    fetch(`${WIDGETS_URL}/${id}`, {
         method: "PUT",
         body: JSON.stringify(widget),
         headers: {
@@ -31,7 +31,7 @@ const updateWidget = (id, widget) =>
     })*/
 
 const findWidgetsForTopic = (tid) =>
-    fetch(`${TOPICS_URL}/api/topics/${tid}/widgets`)
+    fetch(`${TOPICS_URL}/${tid}/widgets`)
         .then(response => response.json())
 
 export default{
