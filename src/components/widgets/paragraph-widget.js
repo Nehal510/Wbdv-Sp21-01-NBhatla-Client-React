@@ -24,6 +24,8 @@ const ParagraphWidget = ({to, deleteItem, updateItem,_widget}) => {
                 <select onChange={(e) => setWidget(widget => ({...widget, type: e.target.value}))} value={widget.type} className="form-control">
                     <option value={"HEADING"}>Heading</option>
                     <option value={"PARAGRAPH"}>Paragraph</option>
+                    <option value={"LIST"}>List</option>
+                    <option value={"IMAGE"}>Image</option>
                 </select>
                 <textarea
                     onChange={(e) => setWidget({...widget, text: e.target.value})}

@@ -1,5 +1,5 @@
-const TOPICS_URL="https://wbdv-a2.herokuapp.com/api/topics";
-const WIDGETS_URL="https://wbdv-a2.herokuapp.com/api/widgets";
+const TOPICS_URL="http://localhost:8080/api/topics";
+const WIDGETS_URL="http://localhost:8080/api/widgets";
 const createWidget = (topicId,widget) =>
     fetch(`${TOPICS_URL}/${topicId}/widgets`, {
         method: 'POST',
