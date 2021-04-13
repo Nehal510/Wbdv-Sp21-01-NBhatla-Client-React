@@ -79,6 +79,10 @@ const CourseRow = (
                     <Link to={`/courses/table/edit/${course._id}`}>
                         <span>{course.title}</span>
                     </Link>
+                    {/*Quizzes Link*/}
+                    <Link className="float-right" to={`/courses/${course._id}/quizzes`}>
+                        Quizzes
+                    </Link>
                   </span>
                 }
             </div>
