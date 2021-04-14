@@ -8,7 +8,7 @@ const Quiz = () => {
     const [questions, setQuestions] = useState([]);
     useEffect(() => {
         // TODO: move this to a service file
-        findQuestionsForQuiz().then(questions => setQuestions(questions))
+        findQuestionsForQuiz(quizId).then(questions => setQuestions(questions))
     },[])
 
     return(
