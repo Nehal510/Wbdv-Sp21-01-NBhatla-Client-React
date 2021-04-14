@@ -4,27 +4,32 @@ const TrueFalseQuestion = ({question}) => {
     const [answer, setAnswer] = useState(null)
     const [correct, setCorrect] = useState(false)
     const [revealAnswers, setRevealAnswers] =useState(false)
+    const [check, setCheck] = useState(false)
     return (
         <div>
             <h4>
                 {question.question}
                 {
-                    revealAnswers&&
+                    (question.correct !== JSON.stringify(answer)&&(check))&&
+                        <i className="fas fa-times float-right" style={{color:"red"}}></i>
+                    /*revealAnswers&&
                     (
                         (answer!==null)?
                             (answer)?
                                 (question.correct?<i className="fas fa-check float-right" style={{color:"green"}}></i>:<i className="fas fa-times float-right" style={{color:"red"}}></i>):
                                 (!question.correct?<i className="fas fa-check float-right" style={{color:"green"}}></i>:<i className="fas fa-times float-right" style={{color:"red"}}></i>):''
-                    )
+                    )*/
                 }
                 {
-                    correct&&
+                    (question.correct === JSON.stringify(answer)&&(check))&&
+                        <i className="fas fa-check float-right" style={{color:"green"}}></i>
+                    /*correct&&
                     (
                         (answer!==null)?
                             (answer)?
                                 (question.correct?<i  className="fas fa-check float-right" style={{color:"green"}}></i>:<i  className="fas fa-times float-right" style={{color:"red"}}></i>):
                                 (!question.correct?<i  className="fas fa-check float-right" style={{color:"green"}}></i>:<i  className="fas fa-times float-right" style={{color:"red"}}></i>):''
-                    )
+                    )*/
 
                 }
                 {/*{
@@ -44,12 +49,16 @@ const TrueFalseQuestion = ({question}) => {
             <ul className="list-group">
                 <li className={`list-group-item
                 ${
-                    revealAnswers&&
-                    (question.correct?'list-group-item-success':'list-group-item-danger')
+                    (check)&& ("true"!==question.correct)&&(JSON.stringify(answer)==="true")&&
+                    ('list-group-item-danger')
+                   /* revealAnswers&&
+                    (question.correct?'list-group-item-success':'list-group-item-danger')*/
                 }
                 ${
-                    correct&&
-                    (question.correct?'list-group-item-success':'')    
+                    (check)&& ("true"===question.correct)&&
+                    ('list-group-item-success')
+                    /*correct&&
+                    (question.correct?'list-group-item-success':'')   */ 
                 }
                 `}>
                     <label><input
@@ -57,22 +66,30 @@ const TrueFalseQuestion = ({question}) => {
                         onClick={() => setAnswer(true)}
                         name={question._id}/>True</label>
                     {
-                        revealAnswers&&
-                            (question.correct?<i className="fas fa-check float-right" style={{color:"green"}}></i>:<i className="fas fa-times float-right" style={{color:"red"}}></i>)
-                    }
+                        (check)&& ("true"!==question.correct)&&(JSON.stringify(answer)==="true")&&
+                            <i className="fas fa-times float-right" style={{color:"red"}}></i>
+                        /*revealAnswers&&
+                            (question.correct?<i className="fas fa-check float-right" style={{color:"green"}}></i>:<i className="fas fa-times float-right" style={{color:"red"}}></i>)*/
+                   }
                     {
-                        correct&&
-                            (question.correct?<i className="fas fa-check float-right" style={{color:"green"}}></i>:'')
+                        (check)&& ("true"===question.correct)&&
+                        <i className="fas fa-check float-right" style={{color:"green"}}></i>
+                       /* correct&&
+                            (question.correct?<i className="fas fa-check float-right" style={{color:"green"}}></i>:'')*/
                     }
                 </li>
                 <li className={`list-group-item
                 ${
-                    revealAnswers&&
-                    (!question.correct?'list-group-item-success':'list-group-item-danger')
+                    (check)&& ("false"!==question.correct)&&(JSON.stringify(answer)==="false")&&
+                        ('list-group-item-danger')
+                    /*revealAnswers&&
+                    (!question.correct?'list-group-item-success':'list-group-item-danger')*/
                 }
                 ${
-                    correct&&
-                    (!question.correct?'list-group-item-success':'')
+                    (check)&& ("false"===question.correct)&&
+                        ('list-group-item-success')
+                   /* correct&&
+                    (!question.correct?'list-group-item-success':'')*/
                 }
                 `}>
                     <label><input
@@ -80,12 +97,17 @@ const TrueFalseQuestion = ({question}) => {
                         onClick={() => setAnswer(false)}
                         name={question._id}/>False</label>
                     {
-                        revealAnswers&&
-                        (!question.correct?<i className="fas fa-check float-right" style={{color:"green"}}></i>:<i className="fas fa-times float-right" style={{color:"red"}}></i>)
+                        (check)&& ("false"!==question.correct)&&(JSON.stringify(answer)==="false")&&
+                            <i className="fas fa-times float-right" style={{color:"red"}}></i>
+                       /* revealAnswers&&
+                        (!question.correct?<i className="fas fa-check float-right" style={{color:"green"}}></i>:<i className="fas fa-times float-right" style={{color:"red"}}></i>)*/
                     }
                     {
-                        correct&&
-                        (!question.correct?<i className="fas fa-check float-right" style={{color:"green"}}></i>:'')
+                        (check)&& ("false"===question.correct)&&
+                            <i className="fas fa-check float-right" style={{color:"green"}}></i>
+
+                       /* correct&&
+                        (!question.correct?<i className="fas fa-check float-right" style={{color:"green"}}></i>:'')*/
                     }
                 </li>
             </ul>
@@ -96,6 +118,7 @@ const TrueFalseQuestion = ({question}) => {
                     onClick={
                         ()=>
                         {
+                            setCheck(true)
                             if(answer)
                             {
                                 if(question.correct)
