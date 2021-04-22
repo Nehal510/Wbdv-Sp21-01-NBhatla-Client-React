@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 
 const TrueFalseQuestion = ({question, questions, setQuestions, graded}) => {
     const [answer, setAnswer] = useState('');
-    const choices = ["True", "False"];
+    const choices = ["true", "false"];
     const rightChoice = answer === question.correct && graded;
     const wrongChoice = graded && answer !== question.correct && graded;
     let count = 0;
