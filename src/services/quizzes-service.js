@@ -1,4 +1,4 @@
-const QUIZZES_URL = 'http://localhost:3001/api/quizzes';
+const QUIZZES_URL = 'https://wbdv-a8-server-node.herokuapp.com/api/quizzes';
 
 export const findAllQuizzes = () => {
     return fetch(QUIZZES_URL)
