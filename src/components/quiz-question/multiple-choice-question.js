@@ -1,78 +1,54 @@
-import React,{useState} from "react";
+import React, {useState, useEffect} from 'react';
 
-const MultipleChoiceQuestion = ({question}) => {
-    const [correct, setCorrect] = useState(false);
+const MultipleChoiceQuestion = ({graded,question, questions, setQuestions}) => {
     const [answer, setAnswer] = useState('');
-    const [revealAnswers, setRevealAnswers] = useState(false);
+    const choices = question.choices;
+    const rightChoice = answer === question.correct && graded;
+    const wrongChoice = graded && answer !== question.correct && graded;
+    let count = 0;
+    useEffect(() => {
+        if (graded) {
+            const unrelated = questions.filter(q => q._id !== question._id);
+            const target = questions.find(q => q._id === question._id);
+            target.answer = answer;
+            const updatedQuestions = [...unrelated, target];
+            setQuestions(updatedQuestions);
+        }
+    }, [graded])
     return (
         <div>
-            <h4>{question.question}{
-                revealAnswers&&(
-                    answer===question.correct? <i className="fas fa-check float-right" style={{ color: 'green'}} ></i>:<i className="fas fa-times float-right" style={{ color: 'red'}}></i>
-                )
-            }
+            <h4>{question.question}
+                {rightChoice && <i className="fas fa-check float-right" style={{color: '#5ab83b'}}/>}
+                {wrongChoice && <i className="fas fa-times float-right" style={{color: '#d9161d'}}/>}</h4>
+            <ul className='list-group'>
                 {
-                    correct&&(
-                        <i className="fas fa-check float-right" style={{ color: 'green'}}></i>
-                    )
-                }
-            </h4>
-            {/* {question.correct}*/}
-            <br/>
-            <ul className="list-group">
-                {
-                    question.choices.map((choice) => {
-                        return (
-                            <li className={`list-group-item ${revealAnswers && (question.correct===choice?`list-group-item-success`:
-                                answer===choice?`list-group-item-danger`:'')
-                            } ${ correct && (question.correct === choice?`list-group-item-success`:'')}`}
-                                key={question._id}>
-                                <label>
-                                    <input type="radio"
-                                           onClick={() => setAnswer(choice)}
-                                           name={question._id}/>
-                                    {' '}
-                                    {choice}
-                                </label>
-                                {
-                                    revealAnswers&&((question.correct === choice)?
-                                            <i className="fas fa-check float-right" style={{ color: 'green'}} ></i> :
-                                            (answer===choice)?
-                                                <i className="fas fa-times float-right" style={{ color: 'red'}}></i>:''
-                                    )
-                                }
-                                {
-                                    correct&&( question.correct === choice?
-                                            <i className="fas fa-check float-right" style={{ color: 'green'}}></i>:``
-                                    )
-                                }
-                            </li>
-
-                        )
-
+                    choices.map(choice => {
+                        const ra =  question.correct === choice && graded;
+                        const swa = graded && question.correct !== answer && answer === choice;
+                        return (<li className={`list-group-item ${ra ? 'list-group-item-success' : ''} ${swa ? 'list-group-item-danger' : ''}`} key={count++}>
+                            <label>
+                                <input type='radio'
+                                       checked={answer === choice}
+                                       disabled={graded}
+                                       value={choice}
+                                       onChange={e => setAnswer(e.target.value)}/>
+                                {choice}
+                            </label>
+                            {
+                                ra && <i className="fas fa-check float-right" style={{color: '#5ab83b'}}/>
+                            }
+                            {
+                                swa && <i className="fas fa-times float-right" style={{color: '#d9161d'}}/>
+                            }
+                        </li>)
                     })
                 }
             </ul>
             <br/>
-            <h6>Your answer: {answer}</h6>
-            <br/>
-            <button className="btn btn-success" onClick={() =>
-
-            {
-                if (answer === question.correct) {
-                    setCorrect(true);
-                    setRevealAnswers(false)
-                }
-                else {
-                    setCorrect(false);
-                    setRevealAnswers(true);
-                }
-            }
-            }>Grade</button>
-            <br/>
+            <h6>Your Answer: {answer}</h6>
             <br/>
         </div>
-    )
+    );
 }
 
 export default MultipleChoiceQuestion;

@@ -8,8 +8,8 @@ const QuizzesList = () => {
     useEffect(() => {
         // TODO: implement this in a separate service file
         findAllQuizzes().then((quizzes) => {
-                setQuizzes(quizzes)
-            })
+            setQuizzes(quizzes)
+        })
     }, [])
     return(
         <div>
@@ -19,12 +19,15 @@ const QuizzesList = () => {
                     quizzes.map((quiz) => {
                         return(
                             <div className="list-group-item">
-                            <Link to={`/courses/${courseId}/quizzes/${quiz._id}`}>
-                                {quiz.title}
-                            </Link>
-                            <Link to={`/courses/${courseId}/quizzes/${quiz._id}`}>
-                                <button type="button" className="btn btn-primary float-right">Start</button>
-                            </Link>
+                                <Link to={`/courses/${courseId}/quizzes/${quiz._id}`}>
+                                    {quiz.title}
+                                </Link>
+                                <Link to={`/courses/${courseId}/quizzes/${quiz._id}/attempts`}>
+                                    <button type="button" className="btn btn-dark float-right" style={{marginLeft:"20px"}}>Check Attempts</button>
+                                </Link>
+                                <Link to={`/courses/${courseId}/quizzes/${quiz._id}`}>
+                                    <button type="button" className="btn btn-primary float-right">Start</button>
+                                </Link>
                             </div>
                         )
                     })
